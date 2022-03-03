@@ -49,13 +49,13 @@ void initializeBoard() {
 		{
 			randomX = random(0, NUM_ROWS * NUM_COLS);
 			randomY = random(0, NUM_ROWS * NUM_COLS);
-			if (board[randomx][randomy] != coin && board[randomx][randomy] != stone && board[randomx][randomy] != pj) {
-				board[randomx][randomy] = stone;
+			if (board[randomX][randomY] != coin && board[randomX][randomY] != stone && board[randomX][randomY] != pj) {
+				board[randomX][randomY] = stone;
 				counterStones++;
 			}
 		}
 	}
-	while (counterCoins <= numbercoins)
+	while (counterCoins <= numberCoins)
 	{
 		for (int j = 0; j <= NUM_COLS * NUM_COLS; j++)
 		{
@@ -80,10 +80,10 @@ bool checkMovement(Player player, Movement move, char board[NUM_ROWS][NUM_COLS])
 		if (player.position[1] == 0)
 			return false;
 		else{
-			if (board[player.position[0]][player.position[1]-1] == stone)
+			if (board[player.position[0]][player.position[1] - 1] == stone)
 				return false;
 			else
-				return true
+				return true;
 		}
 	}
 	else if(move == Movement::DOWN) {
@@ -93,17 +93,17 @@ bool checkMovement(Player player, Movement move, char board[NUM_ROWS][NUM_COLS])
 			if (board[player.position[0]][player.position[1] + 1] == stone)
 				return false;
 			else
-				return true
+				return true;
 		}
 	}
 	if (move == Movement::LEFT) {
 		if (player.position[0] == 0)
 			return false;
 		else {
-			if (board[player.position[0]-1][player.position[1]] == stone)
+			if (board[player.position[0] - 1][player.position[1]] == stone)
 				return false;
 			else
-				return true
+				return true;
 		}
 	}
 	else if (move == Movement::RIGHT) {
@@ -113,7 +113,7 @@ bool checkMovement(Player player, Movement move, char board[NUM_ROWS][NUM_COLS])
 			if (board[player.position[0] + 1][player.position[1]] == stone)
 				return false;
 			else
-				return true
+				return true;
 		}
 	}
 }
@@ -135,17 +135,44 @@ void setPos(){
 bool existsCoin(Player player, Movement move, char board[NUM_ROWS][NUM_COLS]) {
 	bool possibleMove = checkMovement(player, move, board[NUM_ROWS][NUM_COLS]);
 	if (move == Movement::UP) {
-		if(possibleMove==true)
+		if (possibleMove == true) {
+			if (board[player.position[0]][player.position[1] - 1] == coin)
+				return true;
+			else
+				return false;
+		}
+		else
+			return false;
 	}
 	else if (move == Movement::DOWN) {
-		
+		if (possibleMove == true) {
+			if (board[player.position[0]][player.position[1] + 1] == coin)
+				return true;
+			else
+				return false;
+		}
+		else
+			return false;
 	}
 	else if (move == Movement::LEFT) {
-		
+		if (possibleMove == true) {
+			if (board[player.position[0] - 1][player.position[1]] == coin)
+				return true;
+			else
+				return false;
+		}
+		else
+			return false;
 	}
 	else if (move == Movement::RIGHT) {
-		
-			
+		if (possibleMove == true) {
+			if (board[player.position[0] + 1][player.position[1]] == coin)
+				return true;
+			else
+				return false;
+		}
+		else
+			return false;			
 	}
 }
 
