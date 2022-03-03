@@ -59,7 +59,7 @@ void initializeBoard() {
 	}
 	while (countercoins <= numbercoins)
 	{
-		for (int j = 0; j <= NUM_COLS * NUM_COLS; j++;)
+		for (int j = 0; j <= NUM_COLS * NUM_COLS; j++)
 		{
 			int randomx = random(0, NUM_COLS * NUM_COLS);
 			int randomy = random(0, NUM_COLS * NUM_COLS);
@@ -71,8 +71,32 @@ void initializeBoard() {
 	}
 }
 
-bool checkmovement(Player player.postion, Movement move) {
+bool checkmovement(Player player, Movement move) {
+	if (move == Movement::UP) {
+		if (player.position[1] == 0)
+			return false;
+		else
+			return true;
+	}
+	else if(move == Movement::DOWN) {
+		if (player.position[1] == 9)
+			return false;
+		else
+			return true;
 
+	}
+	if (move == Movement::LEFT) {
+		if (player.position[0] == 0)
+			return false;
+		else
+			return true;
+	}
+	else if (move == Movement::RIGHT) {
+		if (player.position[0] == 9)
+			return false;
+		else
+			return true;
+	}
 }
 
 void addscore() {
