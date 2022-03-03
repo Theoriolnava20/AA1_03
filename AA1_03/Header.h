@@ -129,7 +129,31 @@ void addscore(Player player, char board[NUM_ROWS][NUM_COLS]) {
 }
 
 void setPos(){
+	bool loop = false;
+	do{
+	char input;
+	cout << "Input the desired move (WASD)";
+	cin >> input;
+	if (input == 'w') {
+		player.position[1]--;
+		loop = true;
+	}
+	else if (input == 'd') {
+		player.position[0]++;
+		loop = true;
+	}
+	else if (input == 's') {
+		player.position[1]++;
+		loop = true;
+	}
+	else if (input == 'a') {
+		player.position[0]--;
+		loop = true;
+	}
+	else
+		cout<<"Input a valid character"
 
+	}while (!loop);
 }
 
 bool existsCoin(Player player, Movement move, char board[NUM_ROWS][NUM_COLS]) {
@@ -177,7 +201,7 @@ bool existsCoin(Player player, Movement move, char board[NUM_ROWS][NUM_COLS]) {
 }
 
 void movePlayer() {
-
+	
 }
 
 void gameOver() {
