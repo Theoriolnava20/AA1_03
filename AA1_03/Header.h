@@ -5,9 +5,9 @@
 char stone = 'S';
 char coin = 'O';
 char pj = 'P';
-char board[NUM_COLS][NUM_ROWS];
-int maxstones = (NUM_COLS * NUM_COLS) * 0.2;
-int maxcoins = (NUM_COLS * NUM_COLS) * 0.3;
+char board[NUM_ROWS][NUM_COLS];
+int maxstones = (NUM_ROWS * NUM_COLS) * 0.2;
+int maxcoins = (NUM_ROWS * NUM_COLS) * 0.3;
 
 
 enum class Movement {
@@ -31,14 +31,14 @@ int random(int nMin, int nMax)
 
 void initializeBoard() {
 	
-	const int maxstones = (NUM_COLS * NUM_COLS) * 0.2;
-	const int maxcoins = (NUM_COLS * NUM_COLS) * 0.3;
+	const int maxstones = (NUM_ROWS * NUM_COLS) * 0.2;
+	const int maxcoins = (NUM_ROWS * NUM_COLS) * 0.3;
 	//NUMBER OF COINS && STONES
 	int numberstones = random(1,maxstones);
 	int numbercoins = random(1, maxcoins);
 	//Position
-	int randomx = random(0, NUM_COLS * NUM_COLS);
-	int randomy = random(0, NUM_COLS * NUM_COLS);
+	int randomx = random(0, NUM_ROWS * NUM_COLS);
+	int randomy = random(0, NUM_ROWS * NUM_COLS);
 	board[randomx][randomy] = pj;
 	player.position[0] = randomx;
 	player.position[1] = randomy;
@@ -49,8 +49,8 @@ void initializeBoard() {
 	{
 		for (int i = 0; i <= NUM_COLS * NUM_COLS; i++)
 		{
-			int randomx = random(0, NUM_COLS * NUM_COLS);
-			int randomy = random(0, NUM_COLS * NUM_COLS);
+			int randomx = random(0, NUM_ROWS * NUM_COLS);
+			int randomy = random(0, NUM_ROWS * NUM_COLS);
 			if (board[randomx][randomy] != coin && board[randomx][randomy] != stone && board[randomx][randomy] != pj) {
 				board[randomx][randomy] = stone;
 				counterstones++;
@@ -61,13 +61,16 @@ void initializeBoard() {
 	{
 		for (int j = 0; j <= NUM_COLS * NUM_COLS; j++)
 		{
-			int randomx = random(0, NUM_COLS * NUM_COLS);
-			int randomy = random(0, NUM_COLS * NUM_COLS);
+			int randomx = random(0, NUM_ROWS * NUM_COLS);
+			int randomy = random(0, NUM_ROWS * NUM_COLS);
 			if (board[randomx][randomy] != coin && board[randomx][randomy] != stone && board[randomx][randomy] != pj) {
 				board[randomx][randomy] = coin;
 				countercoins++;
 			}
 		}
+	}
+	for (int counterY = 0; counterY < NUM_COLS; counterY++) {
+		for(int counterX=0; counterX<NUM_ROWS)
 	}
 }
 
@@ -99,11 +102,12 @@ bool checkmovement(Player player, Movement move) {
 	}
 }
 
-void addscore() {
+void addscore(Player player, char board[NUM_ROWS][NUM_COLS]) {
 	while (player.score <= maxcoins)
 	{
 		if (board[player.position[0]][player.position[1]] == coin) {
 			player.score++;
+			board[player.position[0]][player.position[1]] ==' ')
 		}
 	}
 }
@@ -112,7 +116,19 @@ void setPos(){
 
 }
 
-bool existsCoin(Player player, Movement move, char board[NUM_COLS][NUM_ROWS]) {
-
+bool existsCoin(Player player, Movement move, char board[NUM_ROWS][NUM_COLS]) {
+	if (move == Movement::UP) {
+		
+	}
+	else if (move == Movement::DOWN) {
+		
+	}
+	if (move == Movement::LEFT) {
+		
+	}
+	else if (move == Movement::RIGHT) {
+		if (player.position[0] == 9)
+			
+	}
 }
 
