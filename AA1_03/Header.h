@@ -5,12 +5,13 @@
 char stone = 'S';
 char coin = 'O';
 char pj = 'P';
-char empty = ' ';
+char empty = 32;
 char board[NUM_ROWS][NUM_COLS];
 const int maxStones = (NUM_ROWS * NUM_COLS) * 0.2;
 const int maxCoins = (NUM_ROWS * NUM_COLS) * 0.3;
 int numberStones;
 int numberCoins;
+Player player;
 
 enum class Movement {
 	UP,
@@ -23,7 +24,7 @@ struct Player {
 	int score;
 	int position[2];//position[0] sera la X i position[1] sera la Y
 };
-Player player;
+
 
 int random(int nMin, int nMax)
 {
@@ -119,7 +120,7 @@ bool checkMovement(Player player, Movement move, char board[NUM_ROWS][NUM_COLS])
 }
 
 void addscore(Player player, char board[NUM_ROWS][NUM_COLS]) {
-	while (player.score <= maxcoins)
+	while (player.score <= maxCoins)
 	{
 		if (board[player.position[0]][player.position[1]] == coin) {
 			player.score++;
@@ -176,8 +177,22 @@ bool existsCoin(Player player, Movement move, char board[NUM_ROWS][NUM_COLS]) {
 	}
 }
 
+void movePlayer() {
+
+}
+
 void gameOver() {
-	if (countercoins == 0) {
+	if (numberCoins == 0) {
 		cout << "Game over\n" << "Your score is " << player.score;
+	}
+}
+
+void printBoard(char board[NUM_ROWS][NUM_COLS]) {
+	for (int counterY = 0; counterY < NUM_COLS; counterY++) {
+		for (int counterX = 0; counterX < NUM_ROWS; counterX++) {
+			if (board[counterX][counterY] != coin && board[counterX][counterY] != stone && board[counterX][counterY] != pj)
+				cout << board[counterX][counterY] << " ";
+		}
+		cout << "\n";
 	}
 }
