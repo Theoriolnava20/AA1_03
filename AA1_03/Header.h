@@ -26,14 +26,12 @@ int random(int nMin, int nMax)
 }
 
 void initializeBoard() {
-	int maxstones = (NUM_COLS * NUM_COLS) * 0.2;
-	int maxcoins = (NUM_COLS * NUM_COLS) * 0.3;
+	const int maxstones = (NUM_COLS * NUM_COLS) * 0.2;
+	const int maxcoins = (NUM_COLS * NUM_COLS) * 0.3;
 	//NUMBER OF COINS && STONES
 	int numberstones = random(1,maxstones);
 	int numbercoins = random(1, maxcoins);
 	//Position
-	int randomx = random(0,NUM_COLS * NUM_COLS);
-	int randomy = random(0,NUM_COLS * NUM_COLS);
 	player.position[0] = randomx;
 	player.position[1] = randomy;
 	//FILL ARRAY
@@ -41,26 +39,26 @@ void initializeBoard() {
 	int counterstones = 0;
 	while (counterstones <= numberstones)
 	{
-		for (int i = 0; i <= NUM_COLS * NUM_COLS; )
+		for (int i = 0; i <= NUM_COLS * NUM_COLS; i++)
 		{
+			int randomx = random(0, NUM_COLS * NUM_COLS);
+			int randomy = random(0, NUM_COLS * NUM_COLS);
 			if (board[randomx][randomy] != coin && board[randomx][randomy] != stone && board[randomx][randomy] != pj) {
 				board[randomx][randomy] = stone;
 				counterstones++;
-				i++;
 			}
-			else i++;
 		}
 	}
 	while (countercoins <= numbercoins)
 	{
-		for (int j = 0; j <= NUM_COLS * NUM_COLS;)
+		for (int j = 0; j <= NUM_COLS * NUM_COLS; j++;)
 		{
+			int randomx = random(0, NUM_COLS * NUM_COLS);
+			int randomy = random(0, NUM_COLS * NUM_COLS);
 			if (board[randomx][randomy] != coin && board[randomx][randomy] != stone && board[randomx][randomy] != pj) {
 				board[randomx][randomy] = coin;
 				countercoins++;
-				j++;
 			}
-			else j++;
 		}
 	}
 }
