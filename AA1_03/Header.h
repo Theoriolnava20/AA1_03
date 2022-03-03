@@ -8,6 +8,8 @@ char pj = 'P';
 int board[NUM_COLS][NUM_ROWS];
 int maxstones = (NUM_COLS * NUM_COLS) * 0.2;
 int maxcoins = (NUM_COLS * NUM_COLS) * 0.3;
+
+
 enum class Movement {
 	UP,
 	DOWN,
@@ -69,14 +71,16 @@ void initializeBoard() {
 	}
 }
 
-bool checkmovement() {
+bool checkmovement(Player player.postion, Movement move) {
 
 }
 
 void addscore() {
 	while (player.score <= maxcoins)
-		if (/*player.position*/ == coin) {
+	{
+		if (board[player.position[0]][player.position[1]] == coin) {
 			player.score++;
 		}
+	}
 }
 
