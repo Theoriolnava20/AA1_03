@@ -17,7 +17,7 @@ enum class Movement {
 
 struct Player {
 	int score;
-	int position[5][5];//position[0] sera la X i position[1] sera la Y
+	int position[2];//position[0] sera la X i position[1] sera la Y
 	
 };
 Player player;
@@ -35,9 +35,9 @@ void initializeBoard() {
 	int numberstones = random(1,maxstones);
 	int numbercoins = random(1, maxcoins);
 	//Position
-	int randomx = random(0,NUM_COLS * NUM_COLS);
-	int randomy = random(0,NUM_COLS * NUM_COLS);
-	player.position[randomx][randomy] = pj;
+	int randomx = random(0, NUM_COLS * NUM_COLS);
+	int randomy = random(0, NUM_COLS * NUM_COLS);
+	board[randomx][randomy] = pj;
 	player.position[0] = randomx;
 	player.position[1] = randomy;
 	//FILL ARRAY
