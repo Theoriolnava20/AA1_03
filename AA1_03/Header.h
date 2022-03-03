@@ -5,9 +5,12 @@
 char stone = 'S';
 char coin = 'O';
 char pj = 'P';
+char empty = ' ';
 char board[NUM_ROWS][NUM_COLS];
-int maxstones = (NUM_ROWS * NUM_COLS) * 0.2;
-int maxcoins = (NUM_ROWS * NUM_COLS) * 0.3;
+int maxStones = (NUM_ROWS * NUM_COLS) * 0.2;
+int maxCoins = (NUM_ROWS * NUM_COLS) * 0.3;
+int numberStones;
+int numberCoins;
 
 
 enum class Movement {
@@ -31,50 +34,53 @@ int random(int nMin, int nMax)
 
 void initializeBoard() {
 	
-	const int maxstones = (NUM_ROWS * NUM_COLS) * 0.2;
-	const int maxcoins = (NUM_ROWS * NUM_COLS) * 0.3;
+	const int maxStones = (NUM_ROWS * NUM_COLS) * 0.2;
+	const int maxCoins = (NUM_ROWS * NUM_COLS) * 0.3;
 	//NUMBER OF COINS && STONES
-	int numberstones = random(1,maxstones);
-	int numbercoins = random(1, maxcoins);
+	numberStones = random(1,maxstones);
+	numberCoins = random(1, maxcoins);
 	//Position
-	int randomx = random(0, NUM_ROWS * NUM_COLS);
-	int randomy = random(0, NUM_ROWS * NUM_COLS);
-	board[randomx][randomy] = pj;
-	player.position[0] = randomx;
-	player.position[1] = randomy;
+	int randomX = random(0, NUM_ROWS * NUM_COLS);
+	int randomY = random(0, NUM_ROWS * NUM_COLS);
+	board[randomX][randomY] = pj;
+	player.position[0] = randomX;
+	player.position[1] = randomY;
 	//FILL ARRAY
-	int countercoins = 0;
-	int counterstones = 0;
-	while (counterstones <= numberstones)
+	int counterCoins = 0;
+	int counterStones = 0;
+	while (counterStones <= numberStones)
 	{
 		for (int i = 0; i <= NUM_COLS * NUM_COLS; i++)
 		{
-			int randomx = random(0, NUM_ROWS * NUM_COLS);
-			int randomy = random(0, NUM_ROWS * NUM_COLS);
+			randomX = random(0, NUM_ROWS * NUM_COLS);
+			randomY = random(0, NUM_ROWS * NUM_COLS);
 			if (board[randomx][randomy] != coin && board[randomx][randomy] != stone && board[randomx][randomy] != pj) {
 				board[randomx][randomy] = stone;
-				counterstones++;
+				counterStones++;
 			}
 		}
 	}
-	while (countercoins <= numbercoins)
+	while (counterCoins <= numbercoins)
 	{
 		for (int j = 0; j <= NUM_COLS * NUM_COLS; j++)
 		{
-			int randomx = random(0, NUM_ROWS * NUM_COLS);
-			int randomy = random(0, NUM_ROWS * NUM_COLS);
-			if (board[randomx][randomy] != coin && board[randomx][randomy] != stone && board[randomx][randomy] != pj) {
-				board[randomx][randomy] = coin;
-				countercoins++;
+			randomX = random(0, NUM_ROWS * NUM_COLS);
+			randomY = random(0, NUM_ROWS * NUM_COLS);
+			if (board[randomX][randomY] != coin && board[randomX][randomY] != stone && board[randomX][randomY] != pj) {
+				board[randomX][randomY] = coin;
+				counterCoins++;
 			}
 		}
 	}
 	for (int counterY = 0; counterY < NUM_COLS; counterY++) {
-		for(int counterX=0; counterX<NUM_ROWS)
+		for (int counterX = 0; counterX < NUM_ROWS; counterX++) {
+			if (board[counterX][counterY] != coin && board[counterX][counterY] != stone && board[counterX][counterY] != pj)
+				board[counterX][counterY] = empty;
+		}
 	}
 }
 
-bool checkmovement(Player player, Movement move) {
+bool checkMovement(Player player, Movement move) {
 	if (move == Movement::UP) {
 		if (player.position[1] == 0)
 			return false;
@@ -117,18 +123,24 @@ void setPos(){
 }
 
 bool existsCoin(Player player, Movement move, char board[NUM_ROWS][NUM_COLS]) {
+	bool possibleMove=
 	if (move == Movement::UP) {
 		
 	}
 	else if (move == Movement::DOWN) {
 		
 	}
-	if (move == Movement::LEFT) {
+	else if (move == Movement::LEFT) {
 		
 	}
 	else if (move == Movement::RIGHT) {
-		if (player.position[0] == 9)
+		
 			
 	}
 }
 
+void gameOver() {
+	if (countercoins == 0) {
+		cout << "Game over\n" << "Your score is " << player.score;
+	}
+}
