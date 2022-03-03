@@ -4,6 +4,7 @@
 #define NUM_COLS 10
 char stone = 'S';
 char coin = 'O';
+char pj = 'P';
 int board[NUM_COLS][NUM_ROWS];
 
 enum class Movement {
@@ -15,43 +16,54 @@ enum class Movement {
 
 struct Player {
 	int score;
-	int positionx;//position[0] sera la X i position[1] sera la Y
-	int positiony;
-	int myposition;
+	int position[2];//position[0] sera la X i position[1] sera la Y
 };
 Player player;
+
+int random(int nMin, int nMax)
+{
+	return rand() % (nMax - nMin + 1) + nMin;
+}
+
 void initializeBoard() {
 	int maxstones = (NUM_COLS * NUM_COLS) * 0.2;
-	int coins = (NUM_COLS * NUM_COLS) * 0.3;
+	int maxcoins = (NUM_COLS * NUM_COLS) * 0.3;
 	//NUMBER OF COINS && STONES
-	int numberstones = rand() % maxstones;
-	int numbercoins = rand() % coins;
+	int numberstones = random(1,maxstones);
+	int numbercoins = random(1, maxcoins);
 	//Position
-	int randomx = rand() % NUM_COLS * NUM_COLS;
-	int randomy = rand() % NUM_COLS * NUM_COLS;
-	
+	int randomx = random(0,NUM_COLS * NUM_COLS);
+	int randomy = random(0,NUM_COLS * NUM_COLS);
+	player.position[0] = randomx;
+	player.position[1] = randomy;
 	//FILL ARRAY
 	int countercoins = 0;
 	int counterstones = 0;
 	while (counterstones <= numberstones)
 	{
-		for (int i = 0; i <= NUM_COLS * NUM_COLS; i++)
+		for (int i = 0; i <= NUM_COLS * NUM_COLS; )
 		{
-			board[randomx][randomy] = stone;
-			counterstones++;
+			if (board[randomx][randomy] != coin && board[randomx][randomy] != stone && board[randomx][randomy] != pj) {
+				board[randomx][randomy] = stone;
+				counterstones++;
+				i++;
+			}
+			else i++;
 		}
 	}
 	while (countercoins <= numbercoins)
 	{
-		for (int j = 0; j <= NUM_COLS * NUM_COLS; j++)
+		for (int j = 0; j <= NUM_COLS * NUM_COLS;)
 		{
-			board[randomx][randomy] = coin;
-			countercoins++;
+			if (board[randomx][randomy] != coin && board[randomx][randomy] != stone && board[randomx][randomy] != pj) {
+				board[randomx][randomy] = coin;
+				countercoins++;
+				j++;
+			}
+			else j++;
 		}
 	}
-	 //POSICION DE PJ
-	player.positionx = randomx;
-	player.positiony = randomy;
-	player.myposition=board[player.positionx][player.positiony];
 }
+
+
 
