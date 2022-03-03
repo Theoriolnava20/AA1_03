@@ -5,7 +5,7 @@
 char stone = 'S';
 char coin = 'O';
 char pj = 'P';
-int board[NUM_COLS][NUM_ROWS];
+char board[NUM_COLS][NUM_ROWS];
 int maxstones = (NUM_COLS * NUM_COLS) * 0.2;
 int maxcoins = (NUM_COLS * NUM_COLS) * 0.3;
 
@@ -106,5 +106,13 @@ void addscore() {
 			player.score++;
 		}
 	}
+}
+
+void setPos(){
+
+}
+
+bool existsCoin(Player player, Movement move, char board[NUM_COLS][NUM_ROWS]) {
+
 }
 
