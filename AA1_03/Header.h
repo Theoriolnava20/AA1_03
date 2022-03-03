@@ -206,9 +206,10 @@ void movePlayer() {
 	board[player.position[0]][player.position[0]] == pj;
 }
 
-void gameOver() {
+bool gameOver() {
 	if (numberCoins == 0) {
 		cout << "Game over\n" << "Your score is " << player.score;
+		return true;
 	}
 }
 
