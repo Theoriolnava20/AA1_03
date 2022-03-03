@@ -50,7 +50,7 @@ void initializeBoard(char board[NUM_ROWS][NUM_COLS]) {
 			randomX = random(0, NUM_ROWS * NUM_COLS);
 			randomY = random(0, NUM_ROWS * NUM_COLS);
 			if (!(board[randomX][randomY] == coin) && !(board[randomX][randomY] == stone) && !(board[randomX][randomY] == pj)) {
-				board[randomX][randomY] = 'S';
+				board[randomX][randomY] = 'S;
 				counterStones++;
 			}
 		}
