@@ -201,7 +201,9 @@ bool existsCoin(Player player, Movement move, char board[NUM_ROWS][NUM_COLS]) {
 }
 
 void movePlayer() {
-	
+	board[player.position[0]][player.position[1]] == emptyChar;
+	setPos();
+	board[player.position[0]][player.position[0]] == pj;
 }
 
 void gameOver() {
@@ -213,7 +215,7 @@ void gameOver() {
 void printBoard(char board[NUM_ROWS][NUM_COLS]) {
 	for (int counterY = 0; counterY < NUM_COLS; counterY++) {
 		for (int counterX = 0; counterX < NUM_ROWS; counterX++) {
-				cout << board[counterX][counterY] << " ";
+				cout << board[counterX][counterY] << emptyChar;
 		}
 		cout << "\n";
 	}
